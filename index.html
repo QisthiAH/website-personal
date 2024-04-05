@@ -21,10 +21,15 @@
       rel="stylesheet"
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
     />
+    <script src="https://kit.fontawesome.com/1ef208c17f.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <nav>
       <label class="logo">QA</label>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+    </label>
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
@@ -35,6 +40,7 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
+    
 
     <div class="home" , id="home">
       <img src="assets/qisthi.png" />
@@ -68,7 +74,6 @@
       <div class="ts1">
         <h2>My <br />Skill</h2>
       </div>
-      <!-- <span class="long-arrow"></span> -->
       <img src="assets/skill.png" />
       <div class="ts2">
         <p>
@@ -179,5 +184,19 @@
       </div>
     </div>
   </div>
+  <script>
+    window.onscroll = function () { myFunction() };
+
+    var navbar = document.getElementById("navbar");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+</script>
   </body>
 </html>
