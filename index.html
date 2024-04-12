@@ -171,9 +171,10 @@
     <h2 class="c-text">Contact</h2>
     <div class="c-contain">
       <div class="ctc">
-        <a><i class="bx bxl-gmail"></i></a>
-        <a><i class="bx bxl-instagram"></i></a>
-        <a><i class="bx bxl-linkedin"></i></a>
+        <a><i class="bx bx-comment-detail"  id="openForm"></i></a>
+        <a class="bx bxl-gmail" href="mailto:qisthiah29@gmail.com"></a>
+        <a class="bx bxl-instagram" href="https://www.instagram.com/qisthiannisa_?igsh=MXJ5cHMyYjVyOHEwYw%3D%3D&utm_source=qr"></a>
+        <a class="bx bxl-linkedin" href="https://www.linkedin.com/in/qisthi-annisa-308945285/"></a>
       </div>
       <div class="footer">
       <footer class="footer">
@@ -184,6 +185,147 @@
       </div>
     </div>
   </div>
+
+
+<div class="overlay"></div>
+
+    <div id="popupForm" class="container">
+        <div class="text">
+            Contact Me
+        </div>
+        <form action="#" id="forms">
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" name="first_name" required>
+                    <div class="underline"></div>
+                    <label for="">First Name</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" name="last_name" required>
+                    <div class="underline"></div>
+                    <label for="">Last Name</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="tel" name="phone" required>
+                    <div class="underline"></div>
+                    <label for="">Phone</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" name="email" required>
+                    <div class="underline"></div>
+                    <label for="">Email</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-data textarea">
+                    <textarea rows="8" cols="80" required name="message"></textarea>
+                    <br />
+                    <div class="underline"></div>
+                    <label for="">Write your message</label>
+                    <br />
+                </div>
+            </div>
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="submit" value="submit">
+                </div>
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input id="closeForm" type="button" value="cancel">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Open the form and show the overlay
+            $('[id^=openForm]').click(function () {
+                $("#popupForm").fadeIn();
+                $(".overlay").fadeIn();
+                $("#forms")[0].reset(); // Reset the form
+                $("div.error").remove(); // Remove any existing error labels
+                return false; // Prevent default link behavior
+            });
+
+            // Close the form and hide the overlay
+            $("#closeForm").click(function () {
+                $("#popupForm").fadeOut();
+                $(".overlay").fadeOut();
+                $("#forms")[0].reset(); // Reset the form
+                $("div.error").remove(); // Remove any existing error labels
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('#forms').validate({ // initialize the plugin
+                rules: {
+                    first_name: {
+                        required: true,
+                        minlength: 2,
+                    },
+                    last_name: {
+                        required: true,
+                    },
+                    phone: {
+                        required: true,
+                        number: true,
+                        minlength: 10,
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    message: {
+                        required: true,
+                    }
+                },
+                errorElement: 'div',
+            });
+        });
+    </script>
+
+    <script>
+        // Form submission
+        $("#forms").submit(function (event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Validate form inputs
+            var isValid = true;
+            $("#forms input, #forms textarea").each(function () {
+                if (!$(this).val()) {
+                    isValid = false;
+                    $(this).addClass("invalid");
+                }
+                else {
+                    $(this).removeClass("invalid");
+                }
+            });
+
+            // If form is valid, submit
+            if (isValid) {
+                alert("your messages has submitted successfully!");
+                // You can submit the form using AJAX or remove the preventDefault() and let it submit normally
+                $("#popupForm").fadeOut();
+                $(".overlay").fadeOut();
+            }
+        });
+
+        // Remove validation class on input change
+        $("#forms input, #forms textarea").on("input", function () {
+            $(this).removeClass("invalid");
+        });
+    </script>
+
   <script>
     window.onscroll = function () { myFunction() };
 
@@ -197,6 +339,6 @@
             navbar.classList.remove("sticky");
         }
     }
-</script>
+ </script>
   </body>
 </html>
